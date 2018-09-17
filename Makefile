@@ -10,23 +10,23 @@ help: Makefile
 	@echo ""
 	@cat Makefile | sed -n 's/^##//p' | column -t -s ':' |  sed -e 's/^/ /'
 
-## client: runs grpc client
-client:
-	GRPC_SERVER_ADDRESS=$(GRPC_SERVER_ADDRESS) go run client/main.go
-
 ## server: runs grpc server
 server:
 	GRPC_SERVER_ADDRESS=$(GRPC_SERVER_ADDRESS) go run client/main.go
 
-## client-image: builds client docker image
-client-image:
-	@TYPE=client make linux-bin
-	@TYPE=client make image
+## client: runs grpc client
+client:
+	GRPC_SERVER_ADDRESS=$(GRPC_SERVER_ADDRESS) go run client/main.go
 
 ## server-image: builds server docker image
 server-image:
 	@TYPE=server make linux-bin
 	@TYPE=server make image
+
+## client-image: builds client docker image
+client-image:
+	@TYPE=client make linux-bin
+	@TYPE=client make image
 
 ## run-server-docker: runs server on docker
 run-server-docker:
